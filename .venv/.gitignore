@@ -1,5 +1,5 @@
 # created by virtualenv automatically
 *
-!.gitignore
-.env
-
+.gitignore
+src/.env
+.venv
