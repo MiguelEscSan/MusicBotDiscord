@@ -77,9 +77,16 @@ Antes que nada dar créditos al repositorio https://github.com/Aguspium/PiumBot/
 
 ## Comandos
 
-- `!controls`: Muestra los botones de control de música.
+- !controls: Muestra los botones de control de música.
 
+- !play <song>: Reproduce la la canción dada.
 
+- !pause: Pausa la música que se está reproduciendo actualmente.
 
+- !resume: Reanuda la reproducción de la música pausada.
+
+- !stop: Detiene la reproducción de la música y limpia la cola.
+
+- !skip: Salta a la siguiente canción en la cola.
 
 
