@@ -2,9 +2,12 @@ from tkinter import Button
 
 import discord
 from src.cogs.structure import queue, current_song
+from src.cogs.buttons import ButtonView
 
 async def playlist_embed(ctx):
+
     current_song_file = current_song.get(ctx.guild.id)
+    print(current_song_file)
     current_song_title = current_song_file['title'] if current_song_file else "No hay cancion actual."
 
     if not queue[ctx.guild.id]:
@@ -38,5 +41,4 @@ async def playlist_embed(ctx):
 
     embed = discord.Embed.from_dict(playlist_embed["embeds"][0])
 
-
-    await ctx.send(embed=embed)
+    await ctx.send(embed=embed, view=ButtonView(ctx))

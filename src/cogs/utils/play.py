@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import yt_dlp
 
-from src.cogs.structure import queue, play_next
+from src.cogs.structure import queue, play_next, current_song
 
 ydl_options = {
         'format': 'bestaudio/best',
@@ -32,7 +32,7 @@ async def play(ctx, search):
                 video = info['entries'][0]
                 url = video['url']
                 title = video['title']
-                queue.append((url, title))
+                queue[ctx.guild.id].append({'url': url, 'title': title})
                 await ctx.send(f"Se ha añadido **{title}** a la cola")
 
                 if not ctx.voice_client.is_playing():
