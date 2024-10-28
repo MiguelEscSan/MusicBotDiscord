@@ -36,7 +36,7 @@ bot = MusicBot(command_prefix='!', intents=discord.Intents.all())
 @bot.event
 async def on_ready():
     await bot.tree.sync()
-    print(f"Conectado como {bot.user}")
+    print(f"Conectado como: {bot.user}")
 
 if __name__ == "__main__":
     bot.run(os.getenv('TOKEN'))
