@@ -7,7 +7,6 @@ from src.cogs.buttons import ButtonView
 async def playlist_embed(ctx):
 
     current_song_file = current_song.get(ctx.guild.id)
-    print(current_song_file)
     current_song_title = current_song_file['title'] if current_song_file else "No hay cancion actual."
 
     if not queue[ctx.guild.id]:

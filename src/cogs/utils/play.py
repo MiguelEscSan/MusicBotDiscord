@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import yt_dlp
+from pytube import YouTube
 
 from src.cogs.structure import queue, play_next, current_song
 
@@ -27,11 +28,13 @@ async def play(ctx, search):
 
     async with ctx.typing():
         with yt_dlp.YoutubeDL(ydl_options) as ydl:
-            info = ydl.extract_info(f"ytsearch:{search}", download=False)
-            if 'entries' in info and len(info['entries']) > 0:
-                video = info['entries'][0]
-                url = video['url']
-                title = video['title']
+            is_url = "https://" in search
+            query = search if is_url else f"ytsearch:{search}"
+            info = ydl.extract_info(query, download=False)
+            # Verifica si es una URL directa o un término de búsqueda con resultados
+            if is_url or ('entries' in info and info['entries']):
+                video = info if is_url else info['entries'][0]
+                url, title = video['url'], video['title']
                 queue[ctx.guild.id].append({'url': url, 'title': title})
                 await ctx.send(f"Se ha añadido **{title}** a la cola")
 
